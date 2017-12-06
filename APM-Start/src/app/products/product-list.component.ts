@@ -14,6 +14,7 @@ export class ProductListComponent implements OnInit {
   showImage: boolean = false;
   filteredProducts: IProduct[];
   products: IProduct[] = [];
+  errorMessage: string;
 
   // dependency injection of ProductService (a short hand way)
   constructor(private _productService: ProductService) {
@@ -37,7 +38,10 @@ export class ProductListComponent implements OnInit {
   // try not to instantiate stuff on constructor.
   // make constructor as fast as possible and use lifecycle hooks instead
   ngOnInit(): void {
-    this.products = this._productService.getProducts();
+    this._productService.getProducts().subscribe(products => {
+      this.products = products;
+      this.filteredProducts = this.products;
+    }, error => (this.errorMessage = <any>error));
   }
 
   toggleImage(): void {
