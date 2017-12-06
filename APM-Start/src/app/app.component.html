@@ -1,7 +1,16 @@
-<!--The whole content below can be removed with the new code.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{title}}!!
-  </h1>
+<div class="container">
+  <nav class="navbar navbar-default">
+    <a class="navbar-brand">{{title}}</a>
+    <ul class="nav navbar-nav">
+      <li>
+        <a [routerLink]="['/welcome']">home</a>
+      </li>
+      <li>
+        <a [routerLink]="['/products']">product list</a>
+      </li>
+    </ul>
+  </nav>
 </div>
-<pm-products></pm-products>
+<div class="container">
+  <router-outlet></router-outlet>
+</div>

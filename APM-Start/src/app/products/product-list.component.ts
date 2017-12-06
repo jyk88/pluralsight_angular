@@ -3,7 +3,7 @@ import { IProduct } from './product';
 import { ProductService } from './product.service';
 
 @Component({
-  selector: 'pm-products',
+  // selector: 'pm-products',
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css']
 })
@@ -19,7 +19,7 @@ export class ProductListComponent implements OnInit {
   // dependency injection of ProductService (a short hand way)
   constructor(private _productService: ProductService) {
     this.filteredProducts = this.products;
-    this.listFilter = 'cart';
+    this.listFilter = '';
   }
 
   _listFilter: string;
