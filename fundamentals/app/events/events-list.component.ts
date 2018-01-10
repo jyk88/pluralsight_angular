@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { EventService } from './shared/event.service';
 
 @Component({
-  selector: 'events-list',
   template: `<div>
     <h1>upcoming ng2 events</h1>
       <hr />
@@ -16,13 +15,17 @@ import { EventService } from './shared/event.service';
     </div>`
 })
 export class EventsListComponent implements OnInit {
-  events: any[];
+  events: any;
   // injecting a service
-  constructor (private eventService: EventService, private toastr: ToastrService) {
-  }
+  constructor(
+    private eventService: EventService,
+    private toastr: ToastrService
+  ) {}
 
   ngOnInit() {
-    this.events = this.eventService.getEvents();
+    this.eventService.getEvents().subscribe(events => {
+      this.events = events;
+    });
   }
 
   handleThumbnailClick(eventName) {
