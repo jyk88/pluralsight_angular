@@ -1,3 +1,4 @@
+import { AuthService } from './user/auth.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
@@ -18,7 +19,6 @@ import { ToastrService } from './common/toastr.service';
 import { appRoutes } from './routes';
 import { Error404Component } from './errors/404.component';
 import { APP_BASE_HREF } from '@angular/common';
-
 @NgModule({
   imports: [BrowserModule, RouterModule.forRoot(appRoutes)],
   declarations: [
@@ -36,7 +36,8 @@ import { APP_BASE_HREF } from '@angular/common';
     { provide: APP_BASE_HREF, useValue: '/' },
     EventRouteActivator,
     { provide: 'canDeactivateCreateEvent', useValue: canDeactivateCreateEvent },
-    EventListResolver
+    EventListResolver,
+    AuthService
   ],
   bootstrap: [EventsAppComponent]
 })
