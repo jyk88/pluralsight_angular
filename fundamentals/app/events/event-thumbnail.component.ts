@@ -1,3 +1,4 @@
+import { IEvent } from './shared/index';
 import { Component, Input, EventEmitter, Output } from '@angular/core';
 
 @Component({
@@ -33,7 +34,7 @@ import { Component, Input, EventEmitter, Output } from '@angular/core';
 export class EventThumbnailComponent {
   // this event input is coming in from the template of events-list, like this
   // <event-thumbnail [event]="event"></event-thumbnail>
-  @Input() event: any;
+  @Input() event: IEvent;
   // // this eventClick output is going out to the template of events-list
   // @Output() eventClick = new EventEmitter();
   // handleClickMe() {

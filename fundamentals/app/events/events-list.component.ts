@@ -1,3 +1,4 @@
+import { IEvent } from './shared/index';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from './../common/toastr.service';
 import { Component, OnInit } from '@angular/core';
@@ -15,7 +16,7 @@ import { EventService } from './shared/event.service';
     </div>`
 })
 export class EventsListComponent implements OnInit {
-  events: any;
+  events: IEvent[];
   // injecting a service
   constructor(
     private eventService: EventService,
