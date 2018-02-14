@@ -24,4 +24,8 @@
             </address>
         </div>
     </div>
+    <hr>
+    <!-- how do we pass the session array from the event getEvent(id) in eventDetails component into this child component -->
+    <!-- i want to bind session property of the session list component to sessions array in event object and the event object is coming from eventDetails component -->
+    <session-list [sessions]="event?.sessions"></session-list>
 </div>
