@@ -1,3 +1,4 @@
+import { SessionListComponent } from './events/event-details/session-list.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from './user/auth.service';
 import { BrowserModule } from '@angular/platform-browser';
@@ -22,17 +23,22 @@ import { appRoutes } from './routes';
 import { Error404Component } from './errors/404.component';
 import { APP_BASE_HREF } from '@angular/common';
 @NgModule({
-  imports: [BrowserModule, RouterModule.forRoot(appRoutes), FormsModule, ReactiveFormsModule],
+  imports: [
+    BrowserModule,
+    RouterModule.forRoot(appRoutes),
+    FormsModule,
+    ReactiveFormsModule
+  ],
   declarations: [
     EventsAppComponent,
     EventsListComponent,
     EventThumbnailComponent,
-  NavbarComponent,
+    NavbarComponent,
     EventDetailsComponent,
     CreateEventComponent,
     Error404Component,
-    CreateSessionComponent
-
+    CreateSessionComponent,
+    SessionListComponent
   ],
   providers: [
     EventService,
@@ -45,7 +51,7 @@ import { APP_BASE_HREF } from '@angular/common';
   ],
   bootstrap: [EventsAppComponent]
 })
-export class AppModule { }
+export class AppModule {}
 
 function canDeactivateCreateEvent(component: CreateEventComponent) {
   if (component.isDirty) {

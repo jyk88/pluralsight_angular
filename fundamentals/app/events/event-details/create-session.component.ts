@@ -1,8 +1,9 @@
 import { ISession, restrictedWords } from './../shared/index';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
+  selector: 'create-session',
   templateUrl: 'app/events/event-details/create-session.component.html',
   styles: [
     `
@@ -14,6 +15,8 @@ import { Component, OnInit } from '@angular/core';
   ]
 })
 export class CreateSessionComponent implements OnInit {
+  @Output() saveNewSession = new EventEmitter();
+  @Output() cancelAddSession = new EventEmitter();
   newSessionForm: FormGroup;
   name: FormControl;
   presenter: FormControl;
@@ -41,6 +44,8 @@ export class CreateSessionComponent implements OnInit {
     });
   }
 
+  // taking in the $event ahd forming it into a session type
+  // and then emitting it
   saveSession(formValue) {
     let session: ISession = {
       id: undefined,
@@ -52,6 +57,11 @@ export class CreateSessionComponent implements OnInit {
       voters: []
     };
 
-    console.log(session);
+    // the @output is like a wrapper around the thing that's actually being emitted.
+    this.saveNewSession.emit(session);
+  }
+
+  cancel() {
+    this.cancelAddSession.emit(); 
   }
 }

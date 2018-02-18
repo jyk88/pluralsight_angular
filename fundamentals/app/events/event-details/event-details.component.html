@@ -25,7 +25,29 @@
         </div>
     </div>
     <hr>
+
+    <div class="row">
+        <div class="col-md-2">
+            <h3 style="margin:0">Sessions</h3>
+        </div>
+
+        <div class="col-md-2">
+            <a (click)="addSession()">Add Session</a>
+        </div>
+    </div>
     <!-- how do we pass the session array from the event getEvent(id) in eventDetails component into this child component -->
     <!-- i want to bind session property of the session list component to sessions array in event object and the event object is coming from eventDetails component -->
-    <session-list [sessions]="event?.sessions"></session-list>
+    <!-- so here are the steps -->
+    <!-- 1. in the parent template, declare a variable like this [childInputName] = "variableAvailableFromParentComponent" -->
+    <!-- 2. go to your child component and declare @Input() and name it the same thing as [childInputName] -->
+    <!-- 3. go to your child template and use the declared @Input name. -->
+    <session-list *ngIf="!addMode" [sessions]="event?.sessions"></session-list>
+
+    <!-- relay info from child to parent -->
+    <!-- 1. create @Output() variable in child component -->
+    <!-- 2. bind @Output variable to parent template here (outputVariable) -->
+    <!-- 3. emit an event using EventEmitter, using that variable.emit(), from child component -->
+    <!-- 4. add that method (with $event parameter passed in) into the parent component -->
+    <!-- note that $event below is actually the session object.  -->
+    <create-session *ngIf="addMode" (saveNewSession)="saveNewSession($event)" (cancelAddSession)="cancelAddSession()"></create-session>
 </div>
